@@ -1,0 +1,34 @@
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+END
+Attribute VB_Name = "clsEventsRowFrame"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = False
+Option Explicit
+
+' ExcelMacroMastery.com
+' Author: Paul Kelly
+' YouTube Video: https://youtu.be/QYW1SlKfKdM
+' Description: Events for the row frames
+
+Private m_modernListbox As clsModernListbox
+Public WithEvents myFrame As MSForms.frame
+Attribute myFrame.VB_VarHelpID = -1
+
+Public Property Set parentListBox(ByVal argModernListBox As clsModernListbox)
+    Set m_modernListbox = argModernListBox
+End Property
+
+Private Sub myFrame_MouseMove(ByVal button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    Call m_modernListbox.SetRowHover(CLng(myFrame.tag))
+End Sub
+
+Private Sub myFrame_Click()
+    Call m_modernListbox.SelectRow(CLng(myFrame.tag))
+End Sub
+Private Sub myFrame_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+    Call m_modernListbox.DoubleClick(CLng(myFrame.tag))
+End Sub
